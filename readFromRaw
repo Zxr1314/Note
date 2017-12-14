@@ -1,0 +1,18 @@
+#package readRaw is self-defined function 
+
+filenum=1 #for example
+shape=readRaw.getShape(filenum)# strcut needs to know the length of object, get it from .mhd file
+
+filename=readRaw.getImgPath(filenum)# get the path
+
+img=readRaw.getImageRaw(filename)# my code return two raw file
+
+img=img[0]
+
+img=struct.unpack(str(shape[0]*shape[1]*shape[2])+'h',img)
+
+img=numpy.reshape(img,shape)
+
+imageslice=img[50,:,:] #to see if it is read correctly
+
+imageShow.imageShow(imageslice) #my own show function using opencv
